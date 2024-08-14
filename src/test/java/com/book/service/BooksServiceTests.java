@@ -1,13 +1,16 @@
 package com.book.service;
 
 import com.book.service.dtos.BooksDto;
+import com.book.service.services.BooksService;
 import com.google.gson.Gson;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
@@ -19,38 +22,29 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class BooksServiceTests {
     @Autowired
-    private MockMvc mockMvc;
+    BooksService booksService;
     private final String title = RandomStringUtils.randomAlphabetic(10);
 
+    @DisplayName("createUpSuccess")
     @Test
-    @DisplayName("testCreatSuccess")
-    public void testSignUpSuccess() throws Exception {
+    public void createUpSuccess() throws Exception {
         BooksDto signupDto = BooksDto.builder()
                 .title(title)
                 .author("paul")
                 .year(2024)
                 .build();
-
-        RequestBuilder request = MockMvcRequestBuilders
-                .post("/books").content(new Gson().toJson(signupDto)).contentType(MediaType
-                        .APPLICATION_JSON_VALUE)
-                .accept(MediaType.APPLICATION_JSON);
-        mockMvc.perform(request).andExpect(status().isCreated()).andReturn();
+        Assertions.assertEquals(booksService.create(signupDto).getStatusCode(), HttpStatus.CREATED);
     }
 
+    @DisplayName("createUpFailed")
     @Test
-    @DisplayName("testCreatFailed")
-    public void testCreateFailed() throws Exception {
+    public void createUpFailed() throws Exception {
         BooksDto signupDto = BooksDto.builder()
                 .title(title)
                 .author("paul")
                 .year(2024)
                 .build();
-
-        RequestBuilder request = MockMvcRequestBuilders
-                .post("/books").content(new Gson().toJson(signupDto)).contentType(MediaType
-                        .APPLICATION_JSON_VALUE)
-                .accept(MediaType.APPLICATION_JSON);
-        mockMvc.perform(request).andExpect(status().isCreated()).andReturn();
+        Assertions.assertEquals(booksService.create(signupDto).getStatusCode(), HttpStatus.BAD_REQUEST);
     }
+
 }

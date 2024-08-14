@@ -58,10 +58,7 @@ public class BooksController {
         return booksService.update(booksDto, id);
     }
     @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
-    @Operation(summary = "Update a book", description = "Returns the boolena if the book deleted.\n" + "\n" + "Example Requests:\n" + "\n" + "{\n" +
-            "  \"title\": \"Test\",\n" +
-            "  \"auth\": \"Paul\",\n" +
-            "}")
+    @Operation(summary = "Delete a book", description = "Returns the boolena if the book deleted.\n" + "\n" + "Example Requests: ")
     @ApiResponses({@ApiResponse(responseCode = "200", description = "DELETE: /books/{id}")})
     public ResponseEntity<Boolean> delete(@Valid @RequestBody BooksDto booksDto, @PathVariable Long id) {
         return booksService.delete(id);

@@ -1,11 +1,15 @@
 # Books RESTful APIs
 
-An application named Cards that allows users to create and manage tasks in the form of cards.
+You are tasked with developing a simple Spring Boot application that manages a collection of books. Each book has an ID, title, author, and publication year
+
+# Architecture
+
+![image](BooksService.Architecture.png)
 
 ## Pre-requisites
 
 - [**Java 17**](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
-- [**MySQL**](https://www.mysql.com/downloads/)(Not Mandatory)
+- [**MySQL**](https://www.mysql.com/downloads/) or [**H2DB**](https://www.h2database.com/html/main.html)
 - [**Maven**](https://maven.apache.org/download.cgi)
 - [**Docker**](https://www.docker.com/)
 - [**Docker Compose**](https://docs.docker.com/reference/cli/docker/compose/)
@@ -43,5 +47,5 @@ spring:
 To access the APIs, open the link http://localhost:8078/swagger-ui
 ```
 
-![image](https://github.com/baiks/cards/assets/8487325/0ba3be40-02dc-4145-950e-734fefeabe6e)
+![image](img.png)
 

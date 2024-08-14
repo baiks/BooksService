@@ -1,7 +1,8 @@
 package com.book.service.exception.advice;
 
-import com.customer.service.exception.CustomException;
-import com.customer.service.exception.ErrorResponse;
+
+import com.book.service.exception.CustomException;
+import com.book.service.exception.ErrorResponse;
 import com.fasterxml.jackson.databind.exc.MismatchedInputException;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.context.MessageSource;
