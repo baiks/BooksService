@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/books?createDatabaseIfNotExist=true
+    url: jdbc:mysql://127.0.0.1:3306/books_kcb?createDatabaseIfNotExist=true
     username: root
     password: Baiks@123
     hikari:

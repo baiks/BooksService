@@ -25,9 +25,9 @@ public class BooksServiceTests {
     BooksService booksService;
     private final String title = RandomStringUtils.randomAlphabetic(10);
 
-    @DisplayName("createUpSuccess")
+    @DisplayName("createBookSuccess")
     @Test
-    public void createUpSuccess() throws Exception {
+    public void createBookSuccess() throws Exception {
         BooksDto signupDto = BooksDto.builder()
                 .title(title)
                 .author("paul")
@@ -36,15 +36,55 @@ public class BooksServiceTests {
         Assertions.assertEquals(booksService.create(signupDto).getStatusCode(), HttpStatus.CREATED);
     }
 
-    @DisplayName("createUpFailed")
+    @DisplayName("createBookFailed")
     @Test
-    public void createUpFailed() throws Exception {
+    public void createBookFailed() throws Exception {
         BooksDto signupDto = BooksDto.builder()
                 .title(title)
                 .author("paul")
                 .year(2024)
                 .build();
         Assertions.assertEquals(booksService.create(signupDto).getStatusCode(), HttpStatus.BAD_REQUEST);
+    }
+
+    @DisplayName("findAll")
+    @Test
+    public void findAll() throws Exception {
+        Assertions.assertEquals(booksService.findAll().getStatusCode(), HttpStatus.OK);
+    }
+
+    @DisplayName("findById")
+    @Test
+    public void findById() throws Exception {
+        Assertions.assertEquals(booksService.findById(1L).getStatusCode(), HttpStatus.OK);
+    }
+
+    @DisplayName("Delete")
+    @Test
+    public void delete() throws Exception {
+        Assertions.assertEquals(booksService.delete(1L).getStatusCode(), HttpStatus.OK);
+    }
+
+    @DisplayName("updateBookSuccess")
+    @Test
+    public void updateBookSuccess() throws Exception {
+        BooksDto signupDto = BooksDto.builder()
+                .title(title)
+                .author("paul")
+                .year(2024)
+                .build();
+        Assertions.assertEquals(booksService.update(signupDto, 1L).getStatusCode(), HttpStatus.CREATED);
+    }
+
+    @DisplayName("createBookFailed")
+    @Test
+    public void updateBookFailed() throws Exception {
+        BooksDto signupDto = BooksDto.builder()
+                .title(title)
+                .author("paul")
+                .year(2024)
+                .build();
+        Assertions.assertEquals(booksService.update(signupDto, -1L).getStatusCode(), HttpStatus.NO_CONTENT);
     }
 
 }

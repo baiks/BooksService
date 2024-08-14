@@ -21,8 +21,8 @@ public class BooksServiceImpl implements BooksService {
     private final ModelMapper modelMapper;
 
     public ResponseEntity<Books> create(BooksDto booksDto) {
-        Optional<Books> res = booksRepo.findByTitle(booksDto.getTitle().toLowerCase());
-        if (res.isPresent()) {
+        List<Books> res = booksRepo.findByTitle(booksDto.getTitle().toLowerCase());
+        if (res.size() > 0) {
             throw new CustomException("A book with the same title exists.");
         }
         Books books = modelMapper.map(booksDto, Books.class);
